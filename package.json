@@ -1,0 +1,11 @@
+{
+  "name": "10-team-profile-generator",
+  "version": "1.0.0",
+  "description": "nodeJS application to generate profile's for each member within a teamm",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "pbp66",
+  "license": "MIT"
+}
