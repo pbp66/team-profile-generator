@@ -7,5 +7,8 @@
     "test": "jest"
   },
   "author": "pbp66",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "inquirer": "^8.2.4"
+  }
 }
