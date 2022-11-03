@@ -1,0 +1,26 @@
+{
+  "name": "10-team-profile-generator",
+  "version": "1.0.0",
+  "description": "nodeJS application to generate profile's for each member within a team",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "pbp66",
+  "license": "MIT",
+  "dependencies": {
+    "inquirer": "^8.2.4",
+    "jsdom": "^20.0.2"
+  },
+  "devDependencies": {
+    "jest": "^29.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pbp66/team-profile-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pbp66/team-profile-generator/issues"
+  },
+  "homepage": "https://github.com/pbp66/team-profile-generator#readme"
+}
