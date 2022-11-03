@@ -1,7 +1,7 @@
 {
   "name": "10-team-profile-generator",
   "version": "1.0.0",
-  "description": "nodeJS application to generate profile's for each member within a teamm",
+  "description": "nodeJS application to generate profile's for each member within a team",
   "main": "index.js",
   "scripts": {
     "test": "jest"
@@ -10,5 +10,8 @@
   "license": "MIT",
   "dependencies": {
     "inquirer": "^8.2.4"
+  },
+  "devDependencies": {
+    "jest": "^29.2.2"
   }
 }
