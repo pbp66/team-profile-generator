@@ -10,6 +10,7 @@
   "author": "pbp66",
   "license": "MIT",
   "dependencies": {
+    "bootstrap": "^5.2.2",
     "inquirer": "^9.1.4",
     "jsdom": "^20.0.2"
   },
