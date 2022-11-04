@@ -15,6 +15,7 @@ function init() {
 }
 
 async function main() {
+    // TODO: Move all of this into a class or classes. This looks too cluttered.
     const managerQuestions = init();
     const engineerQuestionList = [
         new Question("What is the engineer's name?", "engineer", "", ""),
@@ -43,6 +44,9 @@ async function main() {
 
     console.log(answers);
     console.log("\n");
+
+    // TODO: Generate methods to call the appropriate prompt. This will improve dynamic generation as well as enable the addition of managers (teams within teams)
+
     do {
         teamResponse = await inquirer.prompt([ teamBuilding ]);
         if (teamResponse.addEmployees === "Engineer") {
