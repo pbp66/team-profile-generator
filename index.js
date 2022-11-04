@@ -4,7 +4,7 @@ import Questions from "./lib/questions.js"
 import Answer from "./lib/answer.js";
 
 function init() {
-    let questions = [
+    const questions = [
         new Question("What is the team manager's name?", "manager", "", ""),
         new Question("What is the employee ID for the manager?", "id", "", ""),
         new Question("What is the email address for the manager?", "email", "", ""),
@@ -14,9 +14,10 @@ function init() {
     return new Questions(questions);
 }
 
-function main() {
+async function main() {
     let questions = init();
-    const answers = inquirer.prompt(questions);
+    const answers = await questions.askQuestions();
+    console.log(answers);
 }
 
 main();
