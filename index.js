@@ -15,6 +15,7 @@ function generateBaseQuestions(role) {
 
 function init() {
     // TODO: Generate validator functions for each question
+    // No default answers provided for any of these additional questions
     let managerQuestions = new Questions(
         generateBaseQuestions("manager").push(
             new Question(
@@ -48,14 +49,15 @@ function init() {
         )
     );
 
-    const choices = ["Engineer", "Intern", "Finish Building Team"];
     let finishedTeamQuestion = new Questions(
-        [new Question(
-            "Do you want to add another employee?", 
-            "addEmployees", 
-            "rawlist", 
-            0, 
-            choices)
+        [
+            new Question(
+                "Add another employee or finish building your team:", 
+                "addEmployees", 
+                "rawlist", 
+                0, 
+                ["Manager", "Engineer", "Intern", "Finish Building Team"]
+            )
         ]
     );
 
