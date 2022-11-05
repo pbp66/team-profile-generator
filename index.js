@@ -2,44 +2,80 @@ import inquirer from "inquirer";
 import Question from "./lib/question.js";
 import Questions from "./lib/questions.js"
 import Answer from "./lib/answer.js";
+import Prompts from "./lib/prompts.js";
+
+function generateBaseQuestions(role) {
+    // TODO: Generate validator functions for each question
+    return [ // No default answers provided for these questions
+        new Question(`What is the ${role}'s name?`, `${role}`, "input", ""),
+        new Question(`What is the ${role}'s employee ID?`, "id", "input", ""),
+        new Question(`What is the ${role}'s email address?`, "email", "input", "")
+    ];
+}
 
 function init() {
-    const questions = [
-        new Question("What is the manager's name?", "manager", "", ""),
-        new Question("What is the manager's employee ID?", "id", "", ""),
-        new Question("What is the manager's email address?", "email", "", ""),
-        new Question("What is the manager's office number?", "officeNumber", "", ""),
-    ];
+    // TODO: Generate validator functions for each question
+    let managerQuestions = new Questions(
+        generateBaseQuestions("manager").push(
+            new Question(
+                "What is the manager's office number?", 
+                "officeNumber", 
+                "input", 
+                ""
+            )
+        )
+    );
 
-    return new Questions(questions);
+    let engineerQuestions = new Questions(
+        generateBaseQuestions("engineer").push(
+            new Question(
+                "What is the engineer's Github username?", 
+                "github", 
+                "input", 
+                ""
+            )
+        )
+    );
+
+    let internQuestions = new Questions(
+        generateBaseQuestions("intern").push(
+            new Question(
+                "What is the intern's school?", 
+                "school", 
+                "input", 
+                ""
+            )
+        )
+    );
+
+    const choices = ["Engineer", "Intern", "Finish Building Team"];
+    let finishedTeamQuestion = new Questions(
+        [new Question(
+            "Do you want to add another employee?", 
+            "addEmployees", 
+            "rawlist", 
+            0, 
+            choices)
+        ]
+    );
+
+    return new Prompts(
+        managerQuestions, 
+        engineerQuestions, 
+        internQuestions, 
+        finishedTeamQuestion
+    );
 }
 
 async function main() {
     // TODO: Move all of this into a class or classes. This looks too cluttered.
-    const managerQuestions = init();
-    const engineerQuestionList = [
-        new Question("What is the engineer's name?", "engineer", "", ""),
-        new Question("What is the engineer's employee ID?", "id", "", ""),
-        new Question("What is the engineer's email address?", "email", "", ""),
-        new Question("What is the engineer's Github username?", "github", "", "")
-    ];
-    const internQuestionList = [
-        new Question("What is the intern's name?", "engineer", "", ""),
-        new Question("What is the intern's employee ID?", "id", "", ""),
-        new Question("What is the intern's email address?", "email", "", ""),
-        new Question("What is the intern's school?", "school", "", "")
-    ];
-
-    const engineerQuestions = new Questions(engineerQuestionList);
-    const internQuestions = new Questions(internQuestionList);
-    const choices = ["Engineer", "Intern", "Finish Building Team"];
-    const teamBuilding = new Question("Do you want to add another employee?", "addEmployees", "rawlist", 0, choices);
+    let prompts = init();
 
     let teamResponse = {};
     let response = {};
     let endQuestions = false;
 
-    let answers = await managerQuestions.askQuestions();
+    //et answers = await managerQuestions.askQuestions();
     console.log("\n");
 
     console.log(answers);
