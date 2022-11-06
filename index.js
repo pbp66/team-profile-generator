@@ -34,7 +34,7 @@ function generateQuestions(role) {
     }
 
     questions.push(nextQ);
-    return questions;
+    return new Questions(questions);
 }
 
 function init() {
@@ -55,10 +55,10 @@ function init() {
     );
 
     return new Prompts(
-        managerQuestions, 
-        engineerQuestions, 
-        internQuestions, 
-        finishedTeamQuestion
+        managerQuestions.questions, 
+        engineerQuestions.questions, 
+        internQuestions.questions, 
+        finishedTeamQuestion.questions
     );
 }
 
