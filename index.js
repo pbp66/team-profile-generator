@@ -45,7 +45,7 @@ function init() {
     let finishedTeamQuestion = new Questions("finish",
         [
             new Question(
-                "Add another employee or finish building your team?", 
+                "Add another employee or finish building current team?", 
                 "finish", 
                 "rawlist", 
                 0, 
