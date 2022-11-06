@@ -1,7 +1,6 @@
 import inquirer from "inquirer";
 import Question from "./lib/question.js";
 import Questions from "./lib/questions.js"
-import Answer from "./lib/answer.js";
 import Prompts from "./lib/prompts.js";
 
 function generateBaseQuestions(role) {
@@ -13,47 +12,41 @@ function generateBaseQuestions(role) {
     ];
 }
 
+function generateQuestions(role) {
+    let questions = generateBaseQuestions(role);
+    let nextQ;
+    // No default answers provided for any of these additional questions
+    switch (role) {
+        case "manager":
+            nextQ = new Question("What is the manager's office number?", 
+                "officeNumber", "input", "");
+            break;
+        case "engineer":
+            nextQ = new Question("What is the engineer's Github username?", 
+                "github", "input", "");
+            break;
+        case "intern":
+            nextQ = new Question("What is the intern's school?", 
+            "school", "input", "");
+            break;
+        default:
+            return;
+    }
+
+    questions.push(nextQ);
+    return questions;
+}
+
 function init() {
     // TODO: Generate validator functions for each question
-    // No default answers provided for any of these additional questions
-    let managerQuestions = new Questions(
-        generateBaseQuestions("manager").push(
-            new Question(
-                "What is the manager's office number?", 
-                "officeNumber", 
-                "input", 
-                ""
-            )
-        )
-    );
-
-    let engineerQuestions = new Questions(
-        generateBaseQuestions("engineer").push(
-            new Question(
-                "What is the engineer's Github username?", 
-                "github", 
-                "input", 
-                ""
-            )
-        )
-    );
-
-    let internQuestions = new Questions(
-        generateBaseQuestions("intern").push(
-            new Question(
-                "What is the intern's school?", 
-                "school", 
-                "input", 
-                ""
-            )
-        )
-    );
-
+    let managerQuestions = generateQuestions("manager");
+    let engineerQuestions = generateQuestions("engineer");
+    let internQuestions = generateQuestions("intern");
     let finishedTeamQuestion = new Questions(
         [
             new Question(
                 "Add another employee or finish building your team:", 
-                "addEmployees", 
+                "finish", 
                 "rawlist", 
                 0, 
                 ["Manager", "Engineer", "Intern", "Finish Building Team"]
@@ -72,34 +65,9 @@ function init() {
 async function main() {
     // TODO: Move all of this into a class or classes. This looks too cluttered.
     let prompts = init();
-
-    let teamResponse = {};
-    let response = {};
-    let endQuestions = false;
-
-    //et answers = await managerQuestions.askQuestions();
-    console.log("\n");
-
+    console.log(prompts);
+    let answers = await prompts.start();
     console.log(answers);
-    console.log("\n");
-
-    // TODO: Generate methods to call the appropriate prompt. This will improve dynamic generation as well as enable the addition of managers (teams within teams)
-
-    do {
-        teamResponse = await inquirer.prompt([ teamBuilding ]);
-        if (teamResponse.addEmployees === "Engineer") {
-            response = await engineerQuestions.askQuestions();
-            console.log(response);
-            console.log("\n");
-        } else if (teamResponse.addEmployees === "Intern") {
-            response = await internQuestions.askQuestions();
-            console.log(response);
-            console.log("\n");
-        } else {
-            // Complete team building
-            endQuestions = true;
-        }
-    } while (!endQuestions)
 
 }
 
