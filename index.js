@@ -34,7 +34,7 @@ function generateQuestions(role) {
     }
 
     questions.push(nextQ);
-    return new Questions(questions);
+    return new Questions(role, questions);
 }
 
 function init() {
@@ -42,31 +42,36 @@ function init() {
     let managerQuestions = generateQuestions("manager");
     let engineerQuestions = generateQuestions("engineer");
     let internQuestions = generateQuestions("intern");
-    let finishedTeamQuestion = new Questions(
+    let finishedTeamQuestion = new Questions("finish",
         [
             new Question(
-                "Add another employee or finish building your team:", 
+                "Add another employee or finish building your team?", 
                 "finish", 
                 "rawlist", 
                 0, 
-                ["Manager", "Engineer", "Intern", "Finish Building Team"]
+                [
+                    "Manager", 
+                    "Engineer", 
+                    "Intern", 
+                    "Finish"
+                ]
             )
         ]
     );
 
     return new Prompts(
-        managerQuestions.questions, 
-        engineerQuestions.questions, 
-        internQuestions.questions, 
-        finishedTeamQuestion.questions
+        managerQuestions, 
+        engineerQuestions, 
+        internQuestions, 
+        finishedTeamQuestion
     );
 }
 
 async function main() {
     // TODO: Move all of this into a class or classes. This looks too cluttered.
     let prompts = init();
-    console.log(prompts);
     let answers = await prompts.start();
+    console.log("Answers:\n");
     console.log(answers);
 
 }
