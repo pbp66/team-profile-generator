@@ -2,6 +2,11 @@ import inquirer from "inquirer";
 import Question from "./lib/question.js";
 import Questions from "./lib/questions.js"
 import Prompts from "./lib/prompts.js";
+import TeamBuilder from "./lib/teambuilder.js";
+import Team from "./lib/team.js";
+
+// import events from "events";
+// events.EventEmitter.defaultMaxListeners = 0;
 
 function generateBaseQuestions(role) {
     // TODO: Generate validator functions for each question
@@ -70,9 +75,14 @@ function init() {
 async function main() {
     // TODO: Move all of this into a class or classes. This looks too cluttered.
     let prompts = init();
-    let answers = await prompts.start();
+
+    let builder = new TeamBuilder();
+    builder.init(prompts, ["manager"], ["engineer", "intern"]);
+    let team = await builder.start();
+
+    //let answers = await prompts.start();
     console.log("Answers:\n");
-    console.log(answers);
+    console.log(team);
 
 }
 
