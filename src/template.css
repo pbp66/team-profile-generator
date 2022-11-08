@@ -1,0 +1,8 @@
+.manager {
+    display: flex;
+}
+
+.card-text{
+    display: flex;
+    flex-direction: column;
+}
