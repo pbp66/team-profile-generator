@@ -80,7 +80,6 @@ async function main() {
     builder.init(prompts, ["manager"], ["engineer", "intern"]);
     let team = await builder.start();
 
-    //let answers = await prompts.start();
     console.log("Answers:\n");
     console.log(team);
 
