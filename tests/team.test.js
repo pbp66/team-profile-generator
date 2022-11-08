@@ -1,7 +1,7 @@
 import Team from "../lib/team.js";
 
 describe("Team", () => {
-    it("Returns a Team object with root, depth, and size", () => {
+    it("Returns a Team object with root, depth, and size properties", () => {
 
     });
 
