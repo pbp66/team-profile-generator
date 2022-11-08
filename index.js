@@ -5,8 +5,8 @@ import Prompts from "./lib/prompts.js";
 import TeamBuilder from "./lib/teambuilder.js";
 import Team from "./lib/team.js";
 
-// import events from "events";
-// events.EventEmitter.defaultMaxListeners = 0;
+import events from "events";
+events.EventEmitter.defaultMaxListeners = 0;
 
 function generateBaseQuestions(role) {
     // TODO: Generate validator functions for each question
@@ -81,7 +81,7 @@ async function main() {
     let team = await builder.start();
 
     console.log("Answers:\n");
-    console.log(team);
+    console.log(team.getManager().html);
 
 }
 
