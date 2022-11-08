@@ -49,21 +49,21 @@ describe("Node", () => {
 
         });
     });
-
+/*
     describe("removeChild(node)", () => {
         it("Removes the child node from the parent's node children array property", () => {
 
         });
 
         it("Removes the child node from all of the other children's siblings array", () => {
-            
+
         })
 
         it("Sets the removed child node's properties to null", () => {
 
         });
     });
-
+*/
     describe("isEqualTo(node)", () => {
         it("Returns true when the values of both nodes are strictly equal", () => {
 
@@ -73,11 +73,11 @@ describe("Node", () => {
 
         })
     });
-
+/*
     describe("delete()", () => {
         it("Sets all of a Node's properties to null", () => {
 
         });
     });
-
+*/
 });
