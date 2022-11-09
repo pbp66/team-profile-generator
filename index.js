@@ -112,11 +112,11 @@ async function createWebsite(employee) {
     main.appendChild(employee.data.html);
 
     let teamMembers = employee.children;
-    for (let i = 0; i < teamMembers.length; i++) {
-        main.appendChild(teamMembers[i].data.html);
-        if (teamMembers[i].data.getRole() === "Manager") {
-            await createWebsite(teamMembers[i]);
+    for (const member of teamMembers) {
+        if(member.data.getRole() === "Manager") {
+            await createWebsite(member);
         }
+        main.appendChild(member.data.html);
     }
 
     await fs.writeFile(path.resolve(`./dist/${employee.data.id}.html`), dom.serialize());
