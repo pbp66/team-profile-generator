@@ -1,12 +1,14 @@
-import inquirer from "inquirer";
+import fs from "fs/promises";
+import path from "path";
+import jsdom from "jsdom";
 import Question from "./lib/question.js";
 import Questions from "./lib/questions.js"
 import Prompts from "./lib/prompts.js";
 import TeamBuilder from "./lib/teambuilder.js";
-import Team from "./lib/team.js";
 
-import events from "events";
-events.EventEmitter.defaultMaxListeners = 0;
+// Using the below two lines to ensure node doesn't prematurely crash with recursive CLI
+// import events from "events";
+// events.EventEmitter.defaultMaxListeners = 0;
 
 function generateBaseQuestions(role) {
     // TODO: Generate validator functions for each question
@@ -72,6 +74,54 @@ function init() {
     );
 }
 
+// Must take a team object instance
+async function createWebsites(team) {
+    // Generate DOM Model of Template
+    const dom = await jsdom.JSDOM.fromFile(path.resolve("./src/template.html"));
+    const document = dom.window.document;
+
+    // Assign New Title
+    let title = document.getElementsByTagName("title")[0];
+    title.innerHTML = "Team Page Index";
+
+    // Add Meta Redirect Tag
+    let head = document.getElementsByTagName("Head")[0];
+    let meta = document.createElement("meta");
+    meta.httpEquiv = "Refresh";
+    meta.content = `0; ${team.getManager().id}.html`;
+    head.appendChild(meta);
+
+    await fs.writeFile(path.resolve(`./dist/index.html`), dom.serialize());
+
+    await createWebsite(team.getLeader());
+}
+
+// Must take an employee object instance
+async function createWebsite(employee) {
+    // Generate DOM Model of Template
+    const dom = await jsdom.JSDOM.fromFile(path.resolve("./src/template.html"));
+    const document = dom.window.document;
+
+    // Assign New Title
+    let title = document.getElementsByTagName("title")[0];
+    title.innerHTML = `${employee.data.name}'s Team`;
+
+    // Add team cards to the page
+    const body = document.querySelector("body");
+    const main = body.children[0];
+    main.appendChild(employee.data.html);
+
+    let teamMembers = employee.children;
+    for (let i = 0; i < teamMembers.length; i++) {
+        main.appendChild(teamMembers[i].data.html);
+        if (teamMembers[i].data.getRole() === "Manager") {
+            await createWebsite(teamMembers[i]);
+        }
+    }
+
+    await fs.writeFile(path.resolve(`./dist/${employee.data.id}.html`), dom.serialize());
+}
+
 async function main() {
     // TODO: Move all of this into a class or classes. This looks too cluttered.
     let prompts = init();
@@ -80,8 +130,7 @@ async function main() {
     builder.init(prompts, ["manager"], ["engineer", "intern"]);
     let team = await builder.start();
 
-    console.log("Answers:\n");
-    console.log(team.getManager().html);
+    await createWebsites(team);
 
 }
 
