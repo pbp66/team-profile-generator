@@ -1,10 +1,10 @@
 import fs from "fs/promises";
 import path from "path";
 import jsdom from "jsdom";
-import Question from "./lib/question.js";
-import Questions from "./lib/questions.js"
-import Prompts from "./lib/prompts.js";
-import TeamBuilder from "./lib/teambuilder.js";
+import Question from "./lib/prompts/question.js";
+import Questions from "./lib/prompts/questions.js"
+import Prompts from "./lib/prompts/prompts.js";
+import TeamBuilder from "./lib/team/teambuilder.js";
 
 // Using the below two lines to ensure node doesn't prematurely crash with recursive CLI
 // import events from "events";
