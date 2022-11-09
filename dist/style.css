@@ -1,0 +1,13 @@
+main {
+    display: flex;
+    flex-direction: row;
+}
+
+.manager {
+    display: flex;
+}
+
+.card-text{
+    display: flex;
+    flex-direction: column;
+}
