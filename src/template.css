@@ -1,6 +1,36 @@
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    width: 100%;
+    min-height: 150px;
+    background-color: rgb(155, 23, 50);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+header h1 {
+    color: aliceblue;
+}
+
 main {
     display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+#team {
+    display: flex;
     flex-direction: row;
+}
+
+.card {
+    margin: 25px;
 }
 
 .manager {
