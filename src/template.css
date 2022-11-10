@@ -3,19 +3,22 @@
     --text-color: aliceblue;
 }
 
+html {
+    width: 100%;
+}
+
 body {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 header {
-    width: 100%;
     min-height: 150px;
     background-color: var(--bg-color);
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 header h1 {
@@ -28,6 +31,7 @@ main {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    width: 100%;
 }
 
 #team {
@@ -69,4 +73,27 @@ main {
 
 .card-link {
     padding-left: 15px;
+}
+
+@media screen and (max-width: 768px), screen and (max-width: 576px) {   
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    main {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    article {
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
+    }
+
+    html, body, main {
+        width: 100%;
+    }
 }
