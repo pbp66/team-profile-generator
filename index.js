@@ -108,16 +108,30 @@ async function createWebsite(employee) {
 
     // Add team cards to the page
     const body = document.querySelector("body");
-    const main = body.children[0];
-    main.appendChild(employee.data.html);
 
+    // Create header section
+    document.querySelector("h1").innerHTML = `${employee.data.name}'s Team`;
+
+    // Aces main section
+    const main = body.children[1];
+
+    // Create manager "article"
+    const managerArticle = document.createElement("article");
+    managerArticle.id = "manager";
+    managerArticle.appendChild(employee.data.html);
+
+    const teamArticle = document.createElement("article");
+    teamArticle.id = "team";
     let teamMembers = employee.children;
     for (const member of teamMembers) {
         if(member.data.getRole() === "Manager") {
             await createWebsite(member);
         }
-        main.appendChild(member.data.html);
+        teamArticle.appendChild(member.data.html);
     }
+
+    main.appendChild(managerArticle);
+    main.appendChild(teamArticle);
 
     await fs.writeFile(path.resolve(`./dist/${employee.data.id}.html`), dom.serialize());
 }
