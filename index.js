@@ -91,6 +91,18 @@ async function createWebsites(team) {
     meta.content = `0; ${team.getManager().id}.html`;
     head.appendChild(meta);
 
+    // Change reset.css source
+    let reset = document.getElementById("reset");
+    reset.href = "../dist/reset.css";
+    let resetTemplate = await fs.readFile(path.resolve("./src/reset.css"));
+    await fs.writeFile(path.resolve("./dist/reset.css"), resetTemplate);
+
+    // Change style.css source
+    let css = document.getElementById("style");
+    css.href = "../dist/style.css";
+    let cssTemplate = await fs.readFile(path.resolve("./src/template.css"));
+    await fs.writeFile(path.resolve("./dist/style.css"), cssTemplate);
+
     await fs.writeFile(path.resolve(`./dist/index.html`), dom.serialize());
 
     await createWebsite(team.getLeader());
@@ -106,18 +118,40 @@ async function createWebsite(employee) {
     let title = document.getElementsByTagName("title")[0];
     title.innerHTML = `${employee.data.name}'s Team`;
 
+    // Change reset.css source
+    let reset = document.getElementById("reset");
+    reset.href = "../dist/reset.css";
+
+    // Change style.css source
+    let css = document.getElementById("style");
+    css.href = "../dist/style.css";
+
     // Add team cards to the page
     const body = document.querySelector("body");
-    const main = body.children[0];
-    main.appendChild(employee.data.html);
 
+    // Create header section
+    document.querySelector("h1").innerHTML = `${employee.data.name}'s Team`;
+
+    // Aces main section
+    const main = body.children[1];
+
+    // Create manager "article"
+    const managerArticle = document.createElement("article");
+    managerArticle.id = "manager";
+    managerArticle.appendChild(employee.data.html);
+
+    const teamArticle = document.createElement("article");
+    teamArticle.id = "team";
     let teamMembers = employee.children;
     for (const member of teamMembers) {
         if(member.data.getRole() === "Manager") {
             await createWebsite(member);
         }
-        main.appendChild(member.data.html);
+        teamArticle.appendChild(member.data.html);
     }
+
+    main.appendChild(managerArticle);
+    main.appendChild(teamArticle);
 
     await fs.writeFile(path.resolve(`./dist/${employee.data.id}.html`), dom.serialize());
 }

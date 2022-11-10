@@ -1,13 +1,99 @@
+:root {
+    --bg-color: rgb(155, 23, 50);
+    --text-color: aliceblue;
+}
+
+html {
+    width: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+header {
+    min-height: 150px;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header h1 {
+    color: var(--text-color);
+}
+
 main {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+#team {
     display: flex;
     flex-direction: row;
 }
 
-.manager {
+.card {
+    margin: 25px;
     display: flex;
+}
+
+.card-title {
+    padding: 10px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border: none;
+    margin: 0;
+}
+
+.card-subtitle {
+    border: none;
+    margin: none;
+    background-color: var(--bg-color);
+}
+
+.role {
+    padding: 5px;
+    padding-left: 15px;
+    color: var(--text-color);
 }
 
 .card-text{
     display: flex;
     flex-direction: column;
+    padding: 2px;
+    padding-left: 10px;
+}
+
+.card-link {
+    padding-left: 15px;
+}
+
+@media screen and (max-width: 768px), screen and (max-width: 576px) {   
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    main {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    article {
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
+    }
+
+    html, body, main {
+        width: 100%;
+    }
 }
