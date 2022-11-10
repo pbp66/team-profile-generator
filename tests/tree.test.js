@@ -1,4 +1,4 @@
-import Tree from "../lib/tree.js";
+import Tree from "../lib/team/tree.js";
 
 describe("Tree", () => {
     it("Returns a Tree object with root, depth, and size", () => {

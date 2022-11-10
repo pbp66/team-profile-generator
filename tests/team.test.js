@@ -1,4 +1,4 @@
-import Team from "../lib/team.js";
+import Team from "../lib/team/team.js";
 
 describe("Team", () => {
     it("Returns a Team object with root, depth, and size properties", () => {

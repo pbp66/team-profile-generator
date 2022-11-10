@@ -1,4 +1,4 @@
-import Node from "../lib/node.js";
+import Node from "../lib/team/node.js";
 
 describe("Node", () => {
     it("Returns a Node object with data, degree, parent, children, and siblings", () => {

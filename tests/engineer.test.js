@@ -1,4 +1,4 @@
-import Engineer from "../lib/engineer.js";
+import Engineer from "../lib/employee/engineer.js";
 
 describe("Engineer", () => {
     it("Returns an Engineer object with name, id, email, and github properties", () => {

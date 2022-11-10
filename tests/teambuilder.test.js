@@ -1,4 +1,4 @@
-import TeamBuilder from "../lib/teambuilder.js";
+import TeamBuilder from "../lib/team/teambuilder.js";
 
 describe("TeamBuilder", () => {
     it("Returns a TeamBuilder object with team, teamMembers, teamRoles, managerRoles, and prompts properties", () => {
