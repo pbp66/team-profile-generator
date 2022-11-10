@@ -1,3 +1,8 @@
 node_modules/
 .vscode/
 package-lock.json
+
+# Ignore all files within dist EXCEPT
+dist/*
+!dist/index.html
+!dist/style.css
