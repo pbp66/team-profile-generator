@@ -91,6 +91,12 @@ async function createWebsites(team) {
     meta.content = `0; ${team.getManager().id}.html`;
     head.appendChild(meta);
 
+    // Change reset.css source
+    let reset = document.getElementById("reset");
+    reset.href = "../dist/reset.css";
+    let resetTemplate = await fs.readFile(path.resolve("./src/reset.css"));
+    await fs.writeFile(path.resolve("./dist/reset.css"), resetTemplate);
+
     // Change style.css source
     let css = document.getElementById("style");
     css.href = "../dist/style.css";
@@ -111,6 +117,10 @@ async function createWebsite(employee) {
     // Assign New Title
     let title = document.getElementsByTagName("title")[0];
     title.innerHTML = `${employee.data.name}'s Team`;
+
+    // Change reset.css source
+    let reset = document.getElementById("reset");
+    reset.href = "../dist/reset.css";
 
     // Change style.css source
     let css = document.getElementById("style");

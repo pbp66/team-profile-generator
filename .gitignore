@@ -5,4 +5,5 @@ package-lock.json
 # Ignore all files within dist EXCEPT
 dist/*
 !dist/index.html
+!dist/reset.css
 !dist/style.css
