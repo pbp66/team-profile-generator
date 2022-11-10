@@ -91,6 +91,12 @@ async function createWebsites(team) {
     meta.content = `0; ${team.getManager().id}.html`;
     head.appendChild(meta);
 
+    // Change style.css source
+    let css = document.getElementById("style");
+    css.href = "../dist/style.css";
+    let cssTemplate = await fs.readFile(path.resolve("./src/template.css"));
+    await fs.writeFile(path.resolve("./dist/style.css"), cssTemplate);
+
     await fs.writeFile(path.resolve(`./dist/index.html`), dom.serialize());
 
     await createWebsite(team.getLeader());
@@ -105,6 +111,10 @@ async function createWebsite(employee) {
     // Assign New Title
     let title = document.getElementsByTagName("title")[0];
     title.innerHTML = `${employee.data.name}'s Team`;
+
+    // Change style.css source
+    let css = document.getElementById("style");
+    css.href = "../dist/style.css";
 
     // Add team cards to the page
     const body = document.querySelector("body");
