@@ -34,8 +34,8 @@ Final Webpage Template Views:
 ![2nd Screenshot](./assets/readme/webpage-screenshot-2.png)
 
 For a brief video walkthrough, use one of the below links:
-[![README Generator Video Guide](#)](# "Team Profile Generator Video Guide")
-[Youtube Link for the Video](# "Team Profile Generator Video Guide")
+[![README Generator Video Guide](./assets/readme/team-profile-generator-video.png)](https://drive.google.com/file/d/1z5jYEH5X-9L3J8lcmBSppdV7jaWrtQVK/view "Team Profile Generator Video Guide")
+[Youtube Link for the Video](https://youtu.be/YoVStlWjdIE "Team Profile Generator Video Guide")
 
 ## License
 
