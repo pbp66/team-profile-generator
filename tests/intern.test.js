@@ -1,4 +1,4 @@
-import Intern from "../lib/intern.js";
+import Intern from "../lib/employee/intern.js";
 
 describe("Intern", () => {
     it("Returns an Intern object with name, id, email, and github properties", () => {

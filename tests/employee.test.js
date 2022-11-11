@@ -1,4 +1,4 @@
-import Employee from "../lib/employee.js";
+import Employee from "../lib/employee/employee.js";
 
 describe("Employee", () => {
     it("Returns an Employee object with name, id, and email properties", () => {

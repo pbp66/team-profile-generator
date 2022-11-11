@@ -1,4 +1,4 @@
-import Manager from "../lib/manager.js";
+import Manager from "../lib/employee/manager.js";
 
 describe("Manager", () => {
     it("Returns an Manager object with name, id, email, and github properties", () => {
